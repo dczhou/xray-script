@@ -282,8 +282,8 @@ getData() {
             CERT_FILE="/usr/local/etc/xray/${DOMAIN}.pem"
             KEY_FILE="/usr/local/etc/xray/${DOMAIN}.key"
         else
-            resolve=`curl -sL ipget.net/?ip=${DOMAIN}`
-            res=`echo -n ${resolve} | grep ${IP}`
+            resolve=`dig +short ${DOMAIN}`
+            res=${resolve}
             if [[ -z "${res}" ]]; then
                 colorEcho ${BLUE}  "${DOMAIN} 解析结果：${resolve}"
                 colorEcho ${RED}  " 域名未解析到当前服务器IP(${IP})!"
